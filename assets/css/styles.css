@@ -1,0 +1,394 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
+
+
+/*-----------NOTE----------*/
+/* em is equal to the font size of the current element, 2em is twice the font size, and so on.
+font-size: 1.5rem; -> 1.5 times the font size of the root element  */
+
+/* Reset default styles */
+body, h1, h2, h3, p, ul, li, figure, figcaption, blockquote, dl, dd, dt ,form{
+    margin: 0;
+    padding: 0;
+}
+/* Apply box-sizing to all elements */
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Poppins', sans-serif;
+    font-size: 62.5%; /* 1em = 10px */
+    line-height: 1.5;
+}
+a,a:hover{
+    text-decoration: none;
+    cursor: pointer;
+}
+h1, h2, h3, h4, h5, h6{
+    margin-bottom: 0.5em;
+}
+p{
+    margin-bottom: 1em;
+}
+
+input ,textarea,label{
+    font-size: 1.5em; 
+    
+  }
+
+input::placeholder,textarea::placeholder  {
+    font-size: 1em
+}
+
+/*-----------main container----------*/
+.pageContainer{
+    background: #fafafa;
+    width: 100%;
+    height: 100%;
+}
+/*-----------1>main header----------*/
+.mastHeadContainer{
+    width: 100%;
+    height: 5.8em;
+    position: fixed;
+    left: 0;
+    padding:0.8em 1.6em;
+    border-bottom: 0.1em solid #e8e8e8;
+    background-color: #FFFBF5;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+}
+/*-----------2>main side navbar----------*/
+.sideNavContainer{
+    width: 24em;
+    background-color: #7743DB;
+    padding-top: 5.8em;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+}
+/*-----------3>main section container----------*/
+.mainSectionContainer{
+background-color:#3bdd2c;
+padding-top: 5.8em;
+display: flex;
+}
+/* main section container on leftpadding condition */
+.mainSectionContainer.leftPadding{
+padding-left: 24em;
+}
+
+/*-----------main section container -> main content container----------*/
+.mainSectionContainer  .mainContentContainer{
+    padding: 1em 3em; 
+    display: flex;
+    /* full size */
+    flex: 1; 
+    background-color: #14213d;
+    color: white;
+}
+
+/*---------------------*/
+.mastHeadContainer  button:not(.searchButton){
+    cursor: pointer;
+    border: none;
+    width: 5em;
+    height: 5em;
+    padding: 0.8em;
+    background-color: transparent;
+    border: 0.1em solid black;
+    border-radius: 0.3em;
+}
+.mastHeadContainer  .logoContainer{
+width: 15em;
+margin-left: 2.5em;
+}
+.mastHeadContainer  .logoContainer img{
+    width: 100%;
+}
+.mastHeadContainer .searchBarContainer{
+    margin: 0 4em;
+    /* take all length */
+    flex: 1;
+    display: flex;
+    
+    
+}
+.mastHeadContainer .searchBarContainer form{
+    flex: 1;
+    display: flex;
+}
+.mastHeadContainer .searchBarContainer form .searchBar{
+    display: flex;
+    flex: 1;
+    max-width: 40em;
+    padding: 0.2em 1em;
+    border-top-left-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+   
+    outline: none;
+    box-shadow: 0px 0px 5px #61C5FA;
+    border:1px solid #5AB0DB;
+}
+/* .mastHeadContainer .searchBarContainer form .searchBar:hover{
+    outline: none;
+    box-shadow: 0px 0px 5px #071218;
+    border:1px solid #5AB0DB;
+    border-radius:0;
+} */
+.mastHeadContainer .searchBarContainer form .searchButton{
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+    outline: none;
+    box-shadow: 0px 0px 5px #61C5FA;
+    border:0.1em solid #5AB0DB;
+    cursor: pointer;
+}
+.mastHeadContainer .rightIcons img{
+    height: 100%;
+    width: 4em;
+    margin-left: 0.5em;
+
+}
+
+
+/*-----------upload page----------*/
+.column{
+    flex-grow: 1;
+    min-height: 40em;
+    background-color: #ffffff;
+    padding: 2em;
+    border-radius: 0.5em;
+}
+/* ---------sign In and sign up page---- */
+.signMainContainer{
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+.signInContainer{
+    background-color: #11235A;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+.signInContainer .column .header img{
+    width: 10em;
+}
+.signInContainer .column{
+    background-color: #ffffff;
+    /* not grow */
+    flex-grow: 0;
+    width: 45em;
+    padding: 2em 2em;
+    max-height: 100%;
+    overflow-y: auto;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+.signInContainer .column .header{
+    margin-bottom: 1.5em;
+    
+}
+.signInContainer .column .header h3{
+    font-size: 3em;
+    font-weight: 400;
+    margin: 0.3em 0;
+    color: #7743DB;
+}
+.signInContainer .column .header span{
+    font-size: 1.8em;
+    color: #141414;
+}
+.signInContainer .column .loginForm form{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    border: 1px dashed black;
+    border-radius: 0.3em;
+    padding: 1em;
+}
+.signInContainer .column .loginForm form input[type="text"],.signInContainer .column .loginForm form input[type="email"],.signInContainer .column .loginForm form input[type="password"]{
+    
+    border: 0;
+    border-bottom: 1px solid #cb96fd;
+    outline: 0;
+}
+.signInContainer .column .loginForm form input[type="submit"]{
+    background: #33186B;
+    color: white;
+    width: 6em;
+    height: 2.5em;
+    border: 0;
+    outline: 0;
+    border-radius: 0.3em;
+}
+.signInContainer .column .signInMesssage{
+    margin:1.5em 0 0 0;
+    font-size: 1.5em;
+    
+    
+}
+.signMainContainer > .cinematic-container {
+    flex: 1;
+    background: url('https://images.unsplash.com/photo-1568442258512-5e4eb6d43709?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat; 
+    position: relative;
+    
+}
+.cinematic-text {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    background: rgb(0 0 0 / 84%);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    color: #fff; 
+    
+
+}
+.cinematic-text h2{
+    font-weight: 700;
+    font-size:5em;
+   
+}
+.cinematic-text p{
+    font-weight: 200;
+    font-size: 2.5em;
+}
+/* sign up error message */
+.errorMessage{
+    color:red;
+    font-size: 1.1em;
+}
+/*-----------watch.php page----------*/
+.watchLeftColumn {
+    flex: 1;
+  }
+  
+  .watchLeftColumn .videoPlayer {
+    width: 100%;
+
+  }
+  
+  .suggestions {
+    max-width: 425px;
+    flex-grow: 1;
+    margin-left: 19px;
+    padding-left: 10px;
+    height: 100%;
+    background-color: #dededeee;
+  }
+  
+  .videoInfo {
+    width: 100%;
+    padding: 20px 0 10px 0;
+    color: white;
+    background-color: #7743DB;
+  }
+  
+  .videoInfo h2 {
+    overflow: hidden;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 14px;
+  }
+  .videoInfo .bottomSection{
+    display: flex;
+    
+  }
+  .videoInfo .bottomSection .viewCount{
+    font-size: 15px;
+    flex: 1;
+    align-self: center;
+  }
+  /* controls */
+  .videoInfo .bottomSection .controls{
+    flex: 1;
+    text-align: right;
+  }
+  .videoInfo .bottomSection .controls button{
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    font-size: 30px;
+    cursor: pointer;
+    margin: 5px;
+  }
+  .videoInfo .bottomSection .controls button img{
+    height: 20px;
+    width: 20px;
+    margin: 4px 8px 8px 8px;
+  }
+
+  /* secondary info more about user */
+  .secondaryInfo{
+    background-color: #cb96fd;
+    color: black;
+    padding: 20px;
+
+    margin-bottom: 20px;
+    border-bottom: 2px solid black;
+
+  
+  }
+  .secondaryInfo .topRow{
+    display: flex;
+    margin-bottom: 12px;
+    /* background-color: #2e283b; */
+  }
+  /* profile pic */
+  .secondaryInfo .uploadInfo{
+    align-self: center;
+  }
+  .secondaryInfo .topRow .profilePicture{
+    /* height: 100%; */
+    margin-right: 18px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid black;
+  }
+  .secondaryInfo .topRow .uploadInfo{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    /* background-color: #3bdd2c; */
+  }
+  .secondaryInfo .topRow .uploadInfo .date{
+    color: gray;
+    font-size: 13px;
+    font-weight: 400;
+  }
+  .secondaryInfo  .descriptionContainer{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    color: rgb(0, 0, 0);
+    margin-left: 64px;
+    max-width: 650px;
+  }
+  .secondaryInfo .topRow .subscribeButtonContainer, .secondaryInfo .topRow .editVideoButtonContainer{
+    align-self: center;
+ 
+  }
+  .secondaryInfo .topRow .subscribeButtonContainer .subscribe{
+    background-color: rgb(179, 71, 71);
+    color: white;
+  }
+
+  
