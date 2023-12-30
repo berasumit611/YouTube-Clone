@@ -386,9 +386,35 @@ margin-left: 2.5em;
     align-self: center;
  
   }
-  .secondaryInfo .topRow .subscribeButtonContainer .subscribe{
-    background-color: rgb(179, 71, 71);
-    color: white;
+  .subscribeButtonContainer .subscribe {
+    background-color: #f00;
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    border: none;
+    padding: 8px;
+    outline: none;
   }
-
+  .editVideoButtonContainer .edit {
+    background-color: rgb(66, 145, 235);
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    border: none;
+    padding: 8px;
+    outline: none;
+  }
+  .subscribeButtonContainer .unsubscribe {
+    background-color: #eee;
+    color: rgba(17, 17, 17, 0.6);
+    font-weight: 500;
+    font-size: 16px;
+    border: none;
+    padding: 10px;
+    outline: none;
+  }
+  .secondaryInfo .topRow .uploadInfo .owner a{
+    color: black;
+    font-size: 20px;
+  }
   

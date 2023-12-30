@@ -30,6 +30,9 @@ $userLoggedInObj=new User($connection,$usernameLoggedIn);
 
     <!-- js script -->
     <script src="./assets/js/commonAction.js"></script>
+    <!-- subscribe functionality in button provider -->
+    <script src="./assets/js/userAction.js"></script>
+
 </head>
 <body>
     <!-- icon8 cdn -->

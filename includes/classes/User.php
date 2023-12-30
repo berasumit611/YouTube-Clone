@@ -61,6 +61,9 @@ class User{
 
         $query->execute();
 
+
+        // The function returns true if the rowCount of the executed query is greater than 0, indicating that there is at least one subscription matching the provided conditions. Otherwise, it returns false
+        
         return $query->rowCount()>0;
 
     }
