@@ -31,22 +31,34 @@ class Comment{
      }
 
      public function create(){
-        //retrive data
+        //retrive data------>
         $commentId=$this->sqlData["id"];
         $postedBy=$this->sqlData["postedBy"];
         $videoId=$this->sqlData["videoId"];
         $body=$this->sqlData["body"];
-        // $responseTo=$this->sqlData["responseTo"];
+        $responseTo=$this->sqlData["responseTo"];
+        $datePosted=$this->sqlData["datePosted"];
+
+
 
         $profileButton=ButtonProvider::createProfileButton($this->conn,$postedBy);
 
         //get timespan
-        $timeSpan="x";
+        $timeSpan=$this->time_elapsed_string($datePosted);
 
         //creating instances of CommentControls class object
         /*----------note-->$this-> refers to whole comment class object--------*/
         $commentControlsObj=new CommentControls($this->conn,$this,$this->userLoggedInObj);
         $retriveCommentControls=$commentControlsObj->create();
+
+        $numResponses=$this->getNumberOfReplies();
+        $viewRepliesText="";//if no reply by default no text
+
+        if($numResponses > 0){
+            $viewRepliesText="<span class='repliesSection viewReplies onclick='getReplies($commentId,this,$videoId)'>View all $numResponses replies</span>";
+        }else{
+            $viewRepliesText="<div class='repliesSection'></div>";
+        }
 
         return 
         "
@@ -74,6 +86,19 @@ class Comment{
 
 
      }
+     /*----------function-------*/
+
+     public function getNumberOfReplies(){
+        $commentId=this->get_commentId();
+        $query=$this->conn->prepare("SELECT count(*) FROM comments WHERE responseTo=:commentId");
+        $query->bindParam(":commentId",$commentId);
+        $query->execute();
+
+        
+
+     }
+
+
      public function get_commentLikes(){
         $commentId= $this->get_commentId();
 
@@ -138,6 +163,37 @@ class Comment{
         //if alredy disliked its true
         return $query->rowCount() > 0;
      }
+
+     // generic function-->https://stackoverflow.com/questions/1416697/converting-timestamp-to-time-ago-in-php-e-g-1-day-ago-2-days-ago
+      public function time_elapsed_string($datetime, $full = false) 
+      {
+            $now = new DateTime;
+            $ago = new DateTime($datetime);
+            $diff = $now->diff($ago);
+
+            $diff->w = floor($diff->d / 7);
+            $diff->d -= $diff->w * 7;
+
+            $string = array(
+                'y' => 'year',
+                'm' => 'month',
+                'w' => 'week',
+                'd' => 'day',
+                'h' => 'hour',
+                'i' => 'minute',
+                's' => 'second',
+            );
+            foreach ($string as $k => &$v) {
+                if ($diff->$k) {
+                    $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+                } else {
+                    unset($string[$k]);
+                }
+            }
+
+            if (!$full) $string = array_slice($string, 0, 1);
+            return $string ? implode(', ', $string) . ' ago' : 'just now';
+        }
 }
 
 ?>
