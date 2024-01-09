@@ -60,6 +60,8 @@ class Comment{
             $viewRepliesText="<div class='repliesSection'></div>";
         }
 
+
+
         return 
         "
         <div class='itemContainer'>
@@ -81,6 +83,7 @@ class Comment{
 
             </div>
             $retriveCommentControls
+            $viewRepliesText
         </div>
         ";
 
@@ -89,13 +92,15 @@ class Comment{
      /*----------function-------*/
 
      public function getNumberOfReplies(){
-        $commentId=this->get_commentId();
-        $query=$this->conn->prepare("SELECT count(*) FROM comments WHERE responseTo=:commentId");
+        $commentId=$this->get_commentId();
+        $query=$this->conn->prepare("SELECT count(*) as 'count' FROM comments WHERE responseTo=:commentId");
         $query->bindParam(":commentId",$commentId);
         $query->execute();
 
-        
+        $data=$query->fetch(PDO::FETCH_ASSOC);
+        $numOfReplies=$data["count"];
 
+        return $numOfReplies;
      }
 
 
@@ -194,6 +199,112 @@ class Comment{
             if (!$full) $string = array_slice($string, 0, 1);
             return $string ? implode(', ', $string) . ' ago' : 'just now';
         }
-}
+// --------------------comment like dislike functionality same as vedio---------
+
+        public function like(){
+
+            $commentId=$this->get_commentId();
+            $username=$this->userLoggedInObj->get_username();
+    
+            if($this->was_liked()){
+
+                $query= $this->conn->prepare("DELETE FROM likes WHERE username=:username AND commentId=:commentId");
+                $query->bindParam(":username",$username);
+                $query->bindParam(":commentId",$commentId);
+    
+                $query->execute();
+    
+               
+                return -1;
+    
+            }else{
+                $query= $this->conn->prepare("DELETE FROM dislikes WHERE username=:username AND commentId=:commentId");
+                $query->bindParam(":username",$username);
+                $query->bindParam(":commentId",$commentId);
+    
+                $query->execute();
+    
+                $count=$query->rowCount();
+
+                $query=$this->conn->prepare("INSERT INTO likes(username,commentId) VALUES (:username,:commentId)");
+                $query->bindParam(":username",$username);
+                $query->bindParam(":commentId",$commentId);
+    
+                $query->execute();
+    
+
+                return 1+$count;
+    
+                
+            }
+    
+        }
+    
+        public function disLike(){
+            $commentId=$this->get_commentId();
+            $username=$this->userLoggedInObj->get_username();
+            
+            if($this->was_DisLiked()){
+                
+                $query= $this->conn->prepare("DELETE FROM dislikes WHERE username=:username AND commentId=:commentId");
+                $query->bindParam(":username",$username);
+                $query->bindParam(":commentId",$commentId);
+                $query->execute();
+                
+                return 1;
+                
+            }else{
+                $query= $this->conn->prepare("DELETE FROM likes WHERE username=:username AND commentId=:commentId");
+                $query->bindParam(":username",$username);
+                $query->bindParam(":commentId",$commentId);
+                
+                $query->execute();
+                
+                $count=$query->rowCount();
+                
+                $query=$this->conn->prepare("INSERT INTO dislikes(username,commentId) VALUES (:username,:commentId)");
+                $query->bindParam(":username",$username);
+                $query->bindParam(":commentId",$commentId);
+                
+                $query->execute();
+                
+
+                return -1+$count;
+                
+                
+            }
+            
+        }
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    }
+
+
+
 
 ?>

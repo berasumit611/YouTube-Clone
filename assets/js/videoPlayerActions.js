@@ -18,6 +18,8 @@ function likeVideo(button,videoId){
         var likeButton=$(button);
         var disLikeButton=$(button).siblings(".disLikeButton");
 
+       
+
         likeButton.addClass("active");
         disLikeButton.removeClass("active");
 
@@ -52,8 +54,9 @@ function disLikeVideo(button,videoId){
     $.post("ajax/disLikeVideo.php",{videoId:videoId})
     .done(function(data){
 
-        var disLikeButton=$(button);
-        var likeButton=$(button).siblings(".disLikeButton");
+    
+        let disLikeButton = $(button);
+            let likeButton = $(button).siblings(".likeButton");
 
         disLikeButton.addClass("active");
         likeButton.removeClass("active");

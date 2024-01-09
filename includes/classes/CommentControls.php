@@ -31,7 +31,7 @@ class CommentControls{
     }
     private function createReplyButton(){
         $text="REPLY";
-        $action="toggleReply(this)";
+        $action="toggleReply(this)";  //WRITTEN IN COMMENT ACTION.JS FILE
 
         return ButtonProvider::createButton($text,null,$action,null);
     }

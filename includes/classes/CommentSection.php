@@ -32,11 +32,11 @@ class CommentSection{
 
         $commentButton=ButtonProvider::createButton("COMMENT",null,$commentButtonAction,"postComment");
 
-        // $comments = $this->video->get_Comments();
-        // $commentItems = "";
-        // foreach($comments as $comment) {
-        //     $commentItems .= $comment->create();
-        // } 
+        $comments = $this->video->get_Comments();
+        $commentItems = "";
+        foreach($comments as $comment) {
+            $commentItems .= $comment->create();
+        } 
 
         /*----------return html--------*/
 
@@ -53,7 +53,7 @@ class CommentSection{
                 </div>
 
                 <div class = 'comments'>
-                            
+                $commentItems 
                 </div>
                   
             </div>
