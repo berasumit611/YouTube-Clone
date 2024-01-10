@@ -1,8 +1,13 @@
 <!-- connect config file -->
 <?php
 require_once("includes/config.php");
+require_once("includes/classes/ButtonProvider.php");
 require_once("includes/classes/User.php");
-require_once "includes/classes/Video.php";
+require_once ("includes/classes/Video.php");
+require_once ("includes/classes/VideoGrid.php");
+require_once ("includes/classes/VideoGridItem.php");
+
+
 
 //in youtube if no login then also indexpage visible 
 // $_SESSION["userLoggedIn"] = username

@@ -53,7 +53,10 @@
 
 </div>
 <div class="suggestions">
-    VIDEO SUGGESTIONS
+    <?php
+        $videoGridObj=new VideoGrid($connection,$userLoggedInObj);
+        echo $videoGridObj->create(null,null,false)
+    ?>
 </div>
 
 
