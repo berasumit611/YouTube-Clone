@@ -112,3 +112,17 @@ function updateLikesValue(element,num){
     element.text(parseInt(likeCountVal) + parseInt(num));
 
 }
+
+//get replies--->comment controls.php
+function getReplies(commentId,button,videoId){
+    $.post("ajax/getCommentReplies.php",{
+        commentId: commentId,
+        videoId: videoId})
+    .done(function(data){
+
+        var replies=$("<div>").addClass("repliesSection");
+        replies.append(data);
+
+        $(button).replaceWith(replies);
+    });
+}

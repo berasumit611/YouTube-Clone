@@ -74,6 +74,7 @@ class CommentControls{
         return ButtonProvider::createButton("",$imgSrc,$action,$class);
     }
 
+    //by default hide
     private function createReplySection(){
         
         $postedBy=$this->userLoggedInObj->get_username();

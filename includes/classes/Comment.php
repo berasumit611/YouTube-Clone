@@ -275,6 +275,24 @@ class Comment{
             }
             
         }
+        public function getReplies(){
+            $commentId= $this->get_commentId();
+            $videoId=$this->get_videoId();
+
+            $query = $this->conn->prepare("SELECT * FROM comments WHERE responseTo = :commentId  ORDER BY datePosted ASC");
+            $query->bindParam(':commentId', $commentId);   
+            
+            $query->execute();
+        
+            $comments = "";
+        
+            while($row = $query->fetch(PDO::FETCH_ASSOC)){
+                $comment = new Comment($this->conn, $row, $this->userLoggedInObj, $videoId);
+                $comment.=$comment->create();
+            }
+        
+            return $comments;
+        }
 
 
 
